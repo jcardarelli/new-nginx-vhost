@@ -1,0 +1,13 @@
+server {
+    listen      80;
+    server_name {{ site_name }};
+
+    # Don't show the nginx version number
+    server_tokens off; 
+
+    root {{ site_root }};
+    index {{ site_index }};
+
+    access_log /var/log/nginx/{{ site_name }}.access.log; 
+    error_log /var/log/nginx/{{ site_name }}.error.log info;
+}
