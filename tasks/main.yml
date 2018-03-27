@@ -1,2 +1,25 @@
 ---
-# tasks file for new-nginx-vhost/
+# tasks file for new_nginx_vhost/
+
+- name: Create new site diretory in "{{ www_root }}"
+  file:
+    path: "{{ www_root }}/{{ site_name }}"
+    state: directory
+
+- name: Copy index.html template to "{{ www_root }}"
+  template:
+    path: "files/index.html.j2"
+    dest: "{{ www_root }/{{ site_name }}/index.html"
+    owner: www-data
+    group: www-data
+    mode: 0644
+
+- name: Copy nginx vhost template
+  template:
+    src: "{{ nginx_conf_j2 }}"
+    dest: "{{ nginx_conf_sites_available }}"
+    owner: root
+    group: "{{ root_group }}"
+    mode: 0644
+    notify:
+  	  - reload nginx

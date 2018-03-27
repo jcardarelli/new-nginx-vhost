@@ -1,2 +1,11 @@
 ---
 # vars file for new-nginx-vhost/
+
+site_root: "{{ www_dir }}/{{ site_name }}"
+site_index: index.html
+
+# Local copy of jinja template file for nginx/sites-available config
+nginx_conf_j2:  templates/nginx-conf.j2
+
+# Full path to the templated config file on the remote host(s)
+nginx_conf_sites_available: "{{ nginx_dir }}/sites_available/{{ site_name }}.conf"
