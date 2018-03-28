@@ -1,0 +1,9 @@
+---
+
+- hosts: web
+
+  roles:
+    - role: new-nginx-vhost
+      site_name: example.com
+      www_dir: /var/www
+
